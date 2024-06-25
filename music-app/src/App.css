@@ -1,0 +1,99 @@
+/* src/index.css */
+
+.hero{
+  background-image: url(../src/assets/image/hero.png);
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-size:contain ;
+  position:relative;
+  z-index: 9999;
+}
+.bg-curve{
+  background-image: url(../src/assets/image/herobg.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: left top;
+  z-index: -9999;
+}
+.fea-shade{
+  mix-blend-mode: normal;
+  opacity: 0.29;
+}
+.bg-transparent{
+  color: transparent;
+}
+.btn-trans{
+  background: rgba(255, 255, 255, 0.26);
+  /* -webkit-backdrop-filter: blur(2.5px); */
+  color: #fff;
+}
+.bg-text{
+  font-family: sonne-bold;
+  font-weight: 800 !important;
+  background-image: url(../src/assets/image/text-wrap.png); /* Change URL to texture file name */
+  background-repeat: repeat;
+  mix-blend-mode:hue;
+  background-position:center center;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.btn-blue{
+  padding-left: 30px;
+  padding-right: 30px;
+  background-color: #0033FF;
+  color: #fff;
+}
+.text-shade{
+  text-shadow:-3px 8px 12px #606060;
+  font-family: sonne-bold;
+}
+.text-grey{
+  color: #958A8A;
+}
+.sonne-b{
+  font-family: sonne-bold;
+}
+.mycolor{
+  color: #0033FF;
+}
+.btn-mycolor{
+  background-color: #0033FF;
+  padding-left: 30px;
+  padding-right: 30px;
+  color: #fff;
+}
+.text-sound{
+  color: rgba(96, 96, 96, 0.5);
+}
+.center{
+  margin-right: auto !important;
+  margin-left: auto !important;
+  position: relative;
+  display: block;
+}
+.bg-line{
+  background-image: url(../src/assets/image/curve.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+  
+}
+.bg-build{
+  background-image: url(../src/assets/image/middle.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 100% -70%;
+}
+.bg-digit{
+  background-color: #f4f6f9;
+
+}
+.bg-dig{
+  background-color: #f4f6f9;
+}
+.bg-globe{
+  background-image: url(../src/assets/image/Subtract.png);
+  background-repeat: no-repeat;
+  background-position:  100% 100%;
+  background-size:contain ;   
+}
