@@ -12,6 +12,8 @@ const EditAlbumModal = ({ show, handleClose, handleSave, albumData }) => {
   } = useAlbumForm(albumData, handleSave);
 
   return (
+    <>
+    {show && <div className="modal-backdrop fade show"></div>}
     <div className={`modal ${show ? 'd-block' : 'd-none'}`} tabIndex="-1">
       <div className="modal-dialog">
         <div className="modal-content">
@@ -62,6 +64,8 @@ const EditAlbumModal = ({ show, handleClose, handleSave, albumData }) => {
         </div>
       </div>
     </div>
+    </>
+
   );
 };
 

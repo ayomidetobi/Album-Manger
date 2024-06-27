@@ -12,6 +12,8 @@ const NewAlbumModal = ({ show, handleClose, handleSave }) => {
   } = useAlbumForm(null, handleSave);
 
   return (
+    <>
+    {show && <div className="modal-backdrop fade show"></div>}
     <div className={`modal ${show ? 'd-block' : 'd-none'}`} tabIndex="-1">
       <div className="modal-dialog">
         <div className="modal-content">
@@ -62,6 +64,7 @@ const NewAlbumModal = ({ show, handleClose, handleSave }) => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

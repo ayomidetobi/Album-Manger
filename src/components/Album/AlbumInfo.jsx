@@ -1,10 +1,11 @@
 
+import AlbumDetailsLoader from '../Loader/AlbumDetailsLoader';
 import Track from './Track';
 import PropTypes from 'prop-types';
 
 function AlbumInfo({ album, onEdit, onDelete }) {
   if (!album) {
-    return <div>Loading...</div>;
+    return <AlbumDetailsLoader />;
   }
   return (
     <div>

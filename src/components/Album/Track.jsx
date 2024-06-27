@@ -21,7 +21,7 @@ function Track({ tracks, artist }) {
               <td>{artist}</td>
               <td>{track.duration}</td>
               <td  className='min-w-24'>
-                <i className="bi bi-pencil p-2 rounded text-primary text-sm bg-primary-subtle"></i>
+                <i className="bi bi-pencil p-2 rounded text-white text-sm bg-dark"></i>
                 <i className="bi bi-trash p-2 rounded text-danger text-sm bg-danger-subtle ms-2"></i>
               </td>
             </tr>
