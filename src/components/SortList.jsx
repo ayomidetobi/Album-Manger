@@ -22,13 +22,13 @@ const SortControls = ({ sortedField, sortOrder, handleSort, setSortedField, setS
     </SortButton>
     
     <button
-      className="btn btn-outline-primary"
+      className="btn bg-red-200 text-red-700 hover:bg-red-700 hover:text-red-200 mt-3"
       onClick={() => {
         setSortedField(null);
         setSortOrder('asc');
       }}
     >
-      Clear Sorting
+      <i className="bi bi-arrow-clockwise"></i>
     </button>
   </div>
 );

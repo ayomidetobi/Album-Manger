@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 const SortButton = ({ field, sortedField, sortOrder, handleSort, children }) => (
   <button
-    className={`btn ${field === sortedField ? 'btn-primary' : 'btn-outline-primary'}`}
+    className={`btn mt-3 me-3 fw-medium ${field === sortedField ? 'btn-dark' : 'btn-outline-dark'}`}
     onClick={() => handleSort(field)}
   >
     {children}

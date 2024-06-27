@@ -77,7 +77,10 @@ EditAlbumModal.propTypes = {
     ranking: PropTypes.number,
     genre: PropTypes.string,
     description: PropTypes.string,
-    album_cover: PropTypes.string,
+    album_cover: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object, 
+    ]),
     tracks: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number,

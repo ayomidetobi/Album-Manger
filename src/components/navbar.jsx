@@ -1,40 +1,65 @@
-import logo from "./logo.png"
+import { NavLink } from 'react-router-dom';
+import { setActiveLink } from '../redux/ActiveLinkSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { logoutSuccess } from '../redux/authSlice';
+
+const navLinks = [
+  { name: 'Home', to: '/' },
+  { name: 'Albums', to: '/albums' },
+  { name: 'About', to: '/about' },
+];
+
 const Navbar = () => {
-    return (
-        <div>
-    <nav className="navbar navbar-expand-lg bg-transparent pt-12">
-    <div className="container px-20">
-        <img alt="holder" src={logo}  width={115 } />
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse " id="navbarSupportedContent">
-        <ul className="navbar-nav me-auto mb-2 mb-lg-0 font-black ms-36">
-            <li className="nav-item">
-            <a className="nav-link active text-xs f-w-600 text-dark" aria-current="page" href="#">STUDIO</a>
+  const activeLink = useSelector((state) => state.activeLink);
+  const dispatch = useDispatch();
+
+  const handleLinkClick = (linkName) => {
+    dispatch(setActiveLink(linkName));
+  };
+  const isAuthenticated = useSelector((state) => state.auth.token);
+
+  const handleLogout = () => {
+    // Dispatch logout action to clear authentication state
+    dispatch(logoutSuccess());
+  };
+
+  return (
+    <div className="container lg:px-20 md:px-5 bg-transparent">
+      <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4">
+        <div className="col-md-3 mb-2 mb-md-0">
+          <NavLink to="/" className="text-dark lg:text-4xl sm:text-base font-black bi bi-music-note-beamed">
+            AlbumManager
+          </NavLink>
+        </div>
+
+        <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          {navLinks.map((link, index) => (
+            <li key={index}>
+              <NavLink
+                to={link.to}
+                className={`nav-link font-black text-dark px-2`}
+                activeClassName="active"
+                onClick={() => handleLinkClick(link.name)}
+              >
+                {link.name}
+              </NavLink>
             </li>
-            <li className="nav-item">
-            <a className="nav-link text-xs f-w-600 text-dark ms-7.5" href="#">COMMUNITY</a>
-            </li>
-            <li className="nav-item">
-            <a className="nav-link text-xs f-w-600 text-dark ms-7.5" href="#">SOUNDS</a>
-            </li>
-            <li className="nav-item">
-            <a className="nav-link text-xs f-w-600 text-dark ms-7.5" href="#">PLUGINS</a>
-            </li>
-            <li className="nav-item">
-            <a className="nav-link text-xs f-w-600 text-dark ms-7.5" href="#">BLOGS</a>
-            </li>
+          ))}
         </ul>
-        <form className="d-flex" role="search">
-            <button className="btn  rounded-pill px-7.5 text-xs text-white me-7.5" type="submit">LOGIN</button>
-            <button className="btn  rounded-pill px-8 text-xs btn-trans" type="submit">SIGN UP</button>
-        </form>
-        </div>
+
+        {isAuthenticated ? (
+            <button type="button" className="btn btn-dark me-2" onClick={handleLogout}>
+              Logout
+            </button>
+          ) : (
+            <>
+              <button type="button" className="btn btn-outline-dark me-2">Login</button>
+              <button type="button" className="btn btn-dark">Sign-up</button>
+            </>
+          )}
+      </header>
     </div>
-    </nav>
-        </div>
-    );
-}
+  );
+};
 
 export default Navbar;

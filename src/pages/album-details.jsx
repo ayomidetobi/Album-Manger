@@ -15,9 +15,7 @@ function AlbumDetails() {
     selectedAlbum,
   } = useAlbumDetails();
 
-  if (!album) {
-    return <div>Loading...</div>;
-  }
+  
 
   return (
     <div>

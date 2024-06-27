@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 
 const SearchBar = ({ query, handleSearch }) => (
   <div className="my-4">
+    <a href='/' className="text-dark text-2xl bi bi-arrow-left my-3"></a>
     <input
       type="text"
       className="form-control"

@@ -8,6 +8,7 @@
   position:relative;
   z-index: 9999;
 }
+
 .bg-curve{
   background-image: url(../src/assets/image/herobg.png);
   background-repeat: no-repeat;
@@ -54,8 +55,21 @@
   font-family: sonne-bold;
 }
 .mycolor{
-  color: #0033FF;
+  color: #ea580c !important;
 }
+
+.nav-link {
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #ea580c !important;
+}
+
+.nav-link.active {
+  color: #ea580c !important;
+}
+
 .btn-mycolor{
   background-color: #0033FF;
   padding-left: 30px;
@@ -96,4 +110,24 @@
   background-repeat: no-repeat;
   background-position:  100% 100%;
   background-size:contain ;   
+}
+.album-card{
+  width:100%;
+  height: 300px;
+  object-fit: cover;
+}
+.img-fluid-album {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+  
+}
+
+@media (max-width: 768px) {
+  .hero {
+    background-image: none;
+  }
+  .bg-text{
+    font-size: 50px;
+  }
 }

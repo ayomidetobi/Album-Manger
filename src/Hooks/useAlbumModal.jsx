@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
+import { useAlbums } from '../api/album-api';
 
-export const useAlbumModals = (createAlbum, updateAlbum) => {
+export const useAlbumModals = () => {
   const [token, setToken] = useState(null);
   const [selectedAlbum, setSelectedAlbum] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -13,7 +14,8 @@ export const useAlbumModals = (createAlbum, updateAlbum) => {
       setToken(parsedAuthData.token);
       console.log(token)
     }
-  }, [token]);
+  }, []);
+  const { createAlbum, updateAlbum } = useAlbums(token);
 
   const handleSaveEditAlbum = (updatedAlbum) => {
     if (selectedAlbum) {

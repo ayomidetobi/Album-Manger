@@ -6,7 +6,7 @@ const Find = () => {
             <p className='text-5xl sonne-b'>Find your <span className='mycolor'>sound</span></p>
             <p className='text-grey py-8'>Preview and download millions of royalty-free samples from <br /> top producers,
                 artists, and sound designers. Available on <br /> desktop, web, and mobile.</p>
-                <button className=' btn-mycolor btn rounded-pill m-t-35 text-xs'>TRY SOUNDS</button>
+                <button className='btn btn-dark m-t-35 '>TRY SOUNDS</button>
         </div>
     );
 }

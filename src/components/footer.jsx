@@ -2,7 +2,7 @@
 
 function Footer() {
   return (
-    <div className="bg-secondary">
+    <div className="bg-black">
       <div className="container px-20">
   <footer className="py-3 ">
     <ul className="nav justify-content-center border-bottom pb-3 mb-3">

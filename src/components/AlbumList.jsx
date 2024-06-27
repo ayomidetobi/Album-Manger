@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 import AlbumCard from './Album/AlbumCard';
+import AlbumListLoader from './Loader/AlbumListLoader';
 
 const AlbumList = ({ albums, isLoading, onEdit }) => (
   <>
     {isLoading ? (
-      <div>Loading...</div>
+      <AlbumListLoader />
     ) : albums && albums.length > 0 ? (
       <AlbumCard
         albums={albums}

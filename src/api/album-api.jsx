@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { setAlbums, addAlbum, updateAlbum, deleteAlbum,setAlbum } from '../redux/albumSlice';
+import { setAlbums, addAlbum, updateAlbum, deleteAlbum, setAlbum } from '../redux/albumSlice';
 import { toast } from 'react-toastify';
 
 const apiUrl = 'http://127.0.0.1:8000/api';
@@ -52,7 +52,10 @@ export const useAlbums = (token) => {
         toast.success('Album created successfully');
         queryClient.invalidateQueries('albums');
       },
-      onError: () => toast.error('Failed to create album'),
+      onError: (error) => {
+        const errorMessage = extractErrorMessage(error);
+        toast.error(errorMessage);
+      },
     }
   );
 
@@ -82,14 +85,19 @@ export const useAlbums = (token) => {
       return response.data;
     },
     {
-      onSuccess: (data) => {
+      onSuccess: (data, variables) => {
         dispatch(updateAlbum(data));
         toast.success('Album updated successfully');
         queryClient.invalidateQueries('albums');
+        queryClient.invalidateQueries(['album', variables.id]);  // Invalidate the single album query
       },
-      onError: () => toast.error('Failed to update album'),
+      onError: (error) => {
+        const errorMessage = extractErrorMessage(error);
+        toast.error(errorMessage);
+      },
     }
   );
+
   const deleteAlbumMutation = useMutation(
     async (id) => {
       await axios.delete(`${apiUrl}/albums/${id}/`, {
@@ -104,16 +112,55 @@ export const useAlbums = (token) => {
         toast.success('Album deleted successfully');
         queryClient.invalidateQueries('albums');
       },
-      onError: () => toast.error('Failed to delete album'),
+      onError: (error) => {
+        const errorMessage = extractErrorMessage(error);
+        toast.error(errorMessage);
+      },
     }
   );
-  const getAnAlbum = async (id) => {
-    const response = await axios.get(`${apiUrl}/albums/${id}/`);
-    dispatch(setAlbum(response.data));
-    return response.data;
+
+  const useGetAnAlbum = (id) => {
+    return useQuery(
+      ['album', id],
+      async () => {
+        const response = await axios.get(`${apiUrl}/albums/${id}/`);
+        dispatch(setAlbum(response.data));
+        return response.data;
+      },
+      {
+        enabled: !!id && !!token,  // Only fetch if id and token are available
+      }
+    );
   };
 
-  return { albums: albumData, isLoading, isError, createAlbum, updateAlbum:updateAlbumMutation, deleteAlbum: deleteAlbumMutation,getAnAlbum };
+  return {
+    albums: albumData,
+    isLoading,
+    isError,
+    createAlbum,
+    updateAlbum: updateAlbumMutation,
+    deleteAlbum: deleteAlbumMutation,
+    useGetAnAlbum,
+  };
 };
 
-
+// Helper function to extract detailed error messages
+const extractErrorMessage = (error) => {
+  if (error.response && error.response.data) {
+    const errorData = error.response.data;
+    if (typeof errorData === 'string') {
+      return errorData;
+    } else if (typeof errorData === 'object') {
+      let errorMessage = '';
+      for (const key in errorData) {
+        if (Array.isArray(errorData[key])) {
+          errorMessage += ` ${errorData[key].join(', ')}\n`;
+        } else {
+          errorMessage += ` ${errorData[key]}\n`;
+        }
+      }
+      return errorMessage.trim();
+    }
+  }
+  return 'An unknown error occurred';
+};

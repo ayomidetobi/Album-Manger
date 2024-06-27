@@ -3,25 +3,37 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useAlbums } from '../api/album-api';
 import { toast } from 'react-toastify';
 import ConfirmationModal from '../utils/confirm';
+import { decodeBase64 } from '../utils/Encoder'; // Import the decode function
 
 export const useAlbumDetails = () => {
-  const { id } = useParams();
+  const { id: encodedId } = useParams();
   const [token, setToken] = useState(null);
   const navigate = useNavigate();
   const [showEditAlbumModal, setShowEditAlbumModal] = useState(false);
   const [selectedAlbum, setSelectedAlbum] = useState(null);
-  const [album, setAlbum] = useState(null);
-  const { updateAlbum, deleteAlbum, getAnAlbum } = useAlbums(token);
+  const [decodedId, setDecodedId] = useState(null);
+  const { updateAlbum, deleteAlbum, useGetAnAlbum } = useAlbums(token);
 
   useEffect(() => {
     const authData = localStorage.getItem('auth');
     if (authData) {
       const parsedAuthData = JSON.parse(authData);
       setToken(parsedAuthData.token);
-      getAnAlbum(id).then(setAlbum);
-      console.log(token)
     }
-  }, [album]);
+
+    const decoded = decodeBase64(encodedId);
+    const id = parseInt(decoded, 10);
+    if (!isNaN(id)) {
+      setDecodedId(id);
+    } else {
+      console.error('Failed to decode ID');
+      navigate('/error');
+    }
+  }, [encodedId, navigate]);
+
+  const { data: album } = useGetAnAlbum(decodedId, {
+    enabled: !!decodedId, 
+  });
 
   const handleEdit = () => {
     setSelectedAlbum(album);
@@ -44,7 +56,7 @@ export const useAlbumDetails = () => {
       <ConfirmationModal
         message="Are you sure you want to delete this album?"
         onConfirm={() => {
-          deleteAlbum.mutate(id, {
+          deleteAlbum.mutate(decodedId, {
             onSuccess: () => {
               navigate('/albums');
             },

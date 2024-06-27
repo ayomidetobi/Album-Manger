@@ -14,6 +14,7 @@ function Albums() {
     albums,
     isLoading,
     query,
+    token,
     sortedField,
     sortOrder,
     handleSearch,
@@ -22,7 +23,7 @@ function Albums() {
     setSortedField,
   } = AlbumSearchSortLogic();
 
-  const { createAlbum, updateAlbum } = useAlbums();
+  const { createAlbum, updateAlbum } = useAlbums(token);
   const {
     selectedAlbum,
     showModal,
@@ -36,9 +37,10 @@ function Albums() {
 
   return (
     <>
-      <div className="container px-20">
-        <Navbar />
-        <button className='btn bg-primary-subtle text-primary float-end mb-5' onClick={() => setShowModal(true)} > add new album</button>
+      <Navbar />
+      <div className="container lg:px-20 md:px-5">
+        
+        <button className='btn bg-dark text-white float-end my-4' onClick={() => setShowModal(true)} > add new album</button>
         <SearchBar query={query} handleSearch={handleSearch} />
         <SortControls
           sortedField={sortedField}

@@ -30,8 +30,8 @@ export const getInputFields = (albumData, handleChange, handleFileChange) => [
       type: 'number',
       value: albumData.ranking,
       onChange: handleChange,
-      min: '1',
-      max: '5',
+      // min: '1',
+      // max: '5',
     },
     {
       label: 'Genre',
