@@ -1,0 +1,19 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+  font-family: sonne;
+  src: url(../src/assets/fonts/test-soehne-breit-leicht.woff2);
+  
+}
+@font-face {
+  font-family: sonne-bold;
+  src: url(../src/assets/fonts/test-soehne-breit-extrafett.woff2);
+}
+body{
+  font-family: sonne;
+  font-size: 18px;
+}
