@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { useAlbums } from '../api/album-api';
-import { toast } from 'react-toastify';
-import ConfirmationModal from '../utils/confirm';
-import { decodeBase64 } from '../utils/Encoder'; // Import the decode function
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useAlbums } from "../api/album-api";
+import { toast } from "react-toastify";
+import ConfirmationModal from "../utils/confirm";
+import { decodeBase64 } from "../utils/Encoder"; // Import the decode function
 
 export const useAlbumDetails = () => {
   const { id: encodedId } = useParams();
@@ -15,7 +15,7 @@ export const useAlbumDetails = () => {
   const { updateAlbum, deleteAlbum, useGetAnAlbum } = useAlbums(token);
 
   useEffect(() => {
-    const authData = localStorage.getItem('auth');
+    const authData = localStorage.getItem("auth");
     if (authData) {
       const parsedAuthData = JSON.parse(authData);
       setToken(parsedAuthData.token);
@@ -26,13 +26,13 @@ export const useAlbumDetails = () => {
     if (!isNaN(id)) {
       setDecodedId(id);
     } else {
-      console.error('Failed to decode ID');
-      navigate('/error');
+      console.error("Failed to decode ID");
+      navigate("/error");
     }
   }, [encodedId, navigate]);
 
   const { data: album } = useGetAnAlbum(decodedId, {
-    enabled: !!decodedId, 
+    enabled: !!decodedId,
   });
 
   const handleEdit = () => {
@@ -42,12 +42,15 @@ export const useAlbumDetails = () => {
 
   const handleSaveEditAlbum = (updatedAlbum) => {
     if (selectedAlbum) {
-      updateAlbum.mutate({ id: selectedAlbum.id, updatedAlbum }, {
-        onSuccess: () => {
-          setShowEditAlbumModal(false);
-          setSelectedAlbum(null);
+      updateAlbum.mutate(
+        { id: selectedAlbum.id, updatedAlbum },
+        {
+          onSuccess: () => {
+            setShowEditAlbumModal(false);
+            setSelectedAlbum(null);
+          },
         },
-      });
+      );
     }
   };
 
@@ -58,7 +61,7 @@ export const useAlbumDetails = () => {
         onConfirm={() => {
           deleteAlbum.mutate(decodedId, {
             onSuccess: () => {
-              navigate('/albums');
+              navigate("/albums");
             },
           });
         }}

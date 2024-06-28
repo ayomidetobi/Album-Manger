@@ -1,7 +1,7 @@
-
-import AlbumDetailsLoader from '../Loader/AlbumDetailsLoader';
-import Track from './Track';
-import PropTypes from 'prop-types';
+import BackButton from "../Forms/BackButton";
+import AlbumDetailsLoader from "../Loader/AlbumDetailsLoader";
+import Track from "./Track";
+import PropTypes from "prop-types";
 
 function AlbumInfo({ album, onEdit, onDelete }) {
   if (!album) {
@@ -11,16 +11,23 @@ function AlbumInfo({ album, onEdit, onDelete }) {
     <div>
       <div className="row">
         <div className="py-3">
-        <a href='/albums' className="text-dark text-2xl bi bi-arrow-left my-3"></a>
-          <button className="btn bg-danger-subtle ms-3 text-danger float-end" onClick={onDelete}>
-          <i className="bi bi-trash"></i>
+         <BackButton />
+          <button
+            className="btn bg-danger-subtle ms-3 text-danger float-end"
+            onClick={onDelete}
+          >
+            <i className="bi bi-trash"></i>
           </button>
           <button className="btn bg-dark text-white float-end" onClick={onEdit}>
-          <i className="bi bi-pencil"></i>
+            <i className="bi bi-pencil"></i>
           </button>
         </div>
         <div className="col-lg-5 col-sm-12">
-          <img src={album.album_cover} className="img-fluid-album  border" alt="holder" />
+          <img
+            src={album.album_cover}
+            className="img-fluid-album  border"
+            alt="holder"
+          />
         </div>
         <div className="col-lg-7 col-sm-12 text-secondary">
           <div className="mt-24">
@@ -31,9 +38,17 @@ function AlbumInfo({ album, onEdit, onDelete }) {
               {album.artist_name}
             </h3>
             <ul className="py-3">
-              <li><span className="font-black">Genre:</span> {album.genre}</li>
-              <li><span className="font-black">Year:</span> {album.year_of_release}</li>
-              <li><span className="font-black">Description:</span> {album.description}</li>
+              <li>
+                <span className="font-black">Genre:</span> {album.genre}
+              </li>
+              <li>
+                <span className="font-black">Year:</span>{" "}
+                {album.year_of_release}
+              </li>
+              <li>
+                <span className="font-black">Description:</span>{" "}
+                {album.description}
+              </li>
             </ul>
           </div>
           <Track tracks={album.tracks} artist={album.artist_name} />
@@ -46,10 +61,7 @@ AlbumInfo.propTypes = {
   album: PropTypes.shape({
     album_name: PropTypes.string.isRequired,
     artist_name: PropTypes.string.isRequired,
-    album_cover: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object, 
-    ]),
+    album_cover: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     genre: PropTypes.string.isRequired,
     year_of_release: PropTypes.number.isRequired,
     description: PropTypes.string,
@@ -57,7 +69,7 @@ AlbumInfo.propTypes = {
       PropTypes.shape({
         name: PropTypes.string.isRequired,
         duration: PropTypes.string.isRequired,
-      })
+      }),
     ).isRequired,
   }).isRequired,
   onEdit: PropTypes.func.isRequired,

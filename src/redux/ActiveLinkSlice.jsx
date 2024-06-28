@@ -1,8 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const activeLinkSlice = createSlice({
-  name: 'activeLink',
-  initialState: 'Home',
+  name: "activeLink",
+  initialState: "Home",
   reducers: {
     setActiveLink: (state, action) => action.payload,
   },

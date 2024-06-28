@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useAlbums } from '../api/album-api';
+import { useState, useEffect } from "react";
+import { useAlbums } from "../api/album-api";
 
 export const useAlbumModals = () => {
   const [token, setToken] = useState(null);
@@ -8,23 +8,26 @@ export const useAlbumModals = () => {
   const [showEditAlbumModal, setShowEditAlbumModal] = useState(false);
 
   useEffect(() => {
-    const authData = localStorage.getItem('auth');
+    const authData = localStorage.getItem("auth");
     if (authData) {
       const parsedAuthData = JSON.parse(authData);
       setToken(parsedAuthData.token);
-      console.log(token)
+      console.log(token);
     }
-  }, []);
+  }, [token]);
   const { createAlbum, updateAlbum } = useAlbums(token);
 
   const handleSaveEditAlbum = (updatedAlbum) => {
     if (selectedAlbum) {
-      updateAlbum.mutate({ id: selectedAlbum.id, updatedAlbum }, {
-        onSuccess: () => {
-          setShowEditAlbumModal(false);
-          setSelectedAlbum(null);
+      updateAlbum.mutate(
+        { id: selectedAlbum.id, updatedAlbum },
+        {
+          onSuccess: () => {
+            setShowEditAlbumModal(false);
+            setSelectedAlbum(null);
+          },
         },
-      });
+      );
     }
   };
 

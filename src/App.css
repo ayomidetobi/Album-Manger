@@ -1,60 +1,60 @@
 /* src/index.css */
 
-.hero{
+.hero {
   background-image: url(../src/assets/image/hero.png);
   background-repeat: no-repeat;
   background-position: right top;
-  background-size:contain ;
-  position:relative;
+  background-size: contain;
+  position: relative;
   z-index: 9999;
 }
 
-.bg-curve{
+.bg-curve {
   background-image: url(../src/assets/image/herobg.png);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: left top;
   z-index: -9999;
 }
-.fea-shade{
+.fea-shade {
   mix-blend-mode: normal;
   opacity: 0.29;
 }
-.bg-transparent{
+.bg-transparent {
   color: transparent;
 }
-.btn-trans{
+.btn-trans {
   background: rgba(255, 255, 255, 0.26);
   /* -webkit-backdrop-filter: blur(2.5px); */
   color: #fff;
 }
-.bg-text{
+.bg-text {
   font-family: sonne-bold;
   font-weight: 800 !important;
   background-image: url(../src/assets/image/text-wrap.png); /* Change URL to texture file name */
   background-repeat: repeat;
-  mix-blend-mode:hue;
-  background-position:center center;
+  mix-blend-mode: hue;
+  background-position: center center;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.btn-blue{
+.btn-blue {
   padding-left: 30px;
   padding-right: 30px;
-  background-color: #0033FF;
+  background-color: #0033ff;
   color: #fff;
 }
-.text-shade{
-  text-shadow:-3px 8px 12px #606060;
+.text-shade {
+  text-shadow: -3px 8px 12px #606060;
   font-family: sonne-bold;
 }
-.text-grey{
-  color: #958A8A;
+.text-grey {
+  color: #958a8a;
 }
-.sonne-b{
+.sonne-b {
   font-family: sonne-bold;
 }
-.mycolor{
+.mycolor {
   color: #ea580c !important;
 }
 
@@ -70,49 +70,46 @@
   color: #ea580c !important;
 }
 
-.btn-mycolor{
-  background-color: #0033FF;
+.btn-mycolor {
+  background-color: #0033ff;
   padding-left: 30px;
   padding-right: 30px;
   color: #fff;
 }
-.text-sound{
+.text-sound {
   color: rgba(96, 96, 96, 0.5);
 }
-.center{
+.center {
   margin-right: auto !important;
   margin-left: auto !important;
   position: relative;
   display: block;
 }
-.bg-line{
+.bg-line {
   background-image: url(../src/assets/image/curve.png);
   background-repeat: no-repeat;
   background-size: cover;
-  
-  
 }
-.bg-build{
+.bg-build {
   background-image: url(../src/assets/image/middle.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 100% -70%;
 }
-.bg-digit{
-  background-color: #f4f6f9;
-
-}
-.bg-dig{
+.bg-digit {
   background-color: #f4f6f9;
 }
-.bg-globe{
+.bg-dig {
+  background-color: #f4f6f9;
+}
+.bg-globe {
   background-image: url(../src/assets/image/Subtract.png);
   background-repeat: no-repeat;
-  background-position:  100% 100%;
-  background-size:contain ;   
+  background-position: 100% 100%;
+  background-size: contain;
 }
-.album-card{
-  width:100%;
+.album-card {
+  width: 100%;
   height: 300px;
   object-fit: cover;
 }
@@ -120,14 +117,13 @@
   width: 100%;
   height: 600px;
   object-fit: cover;
-  
 }
 
 @media (max-width: 768px) {
   .hero {
     background-image: none;
   }
-  .bg-text{
+  .bg-text {
     font-size: 50px;
   }
 }

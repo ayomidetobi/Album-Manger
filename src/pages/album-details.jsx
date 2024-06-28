@@ -1,8 +1,8 @@
-import Footer from "../components/footer";
-import Navbar from "../components/navbar";
-import AlbumInfo from '../components/Album/AlbumInfo';
-import EditAlbumModal from './edit-album';
-import { useAlbumDetails } from '../Hooks/useAlbumDetails';
+import Footer from "../components/layout/footer";
+import Navbar from "../components/layout/navbar";
+import AlbumInfo from "../components/Album/AlbumInfo";
+import { useAlbumDetails } from "../Hooks/useAlbumDetails";
+import AlbumModal from "../components/Album/AlbumModal";
 
 function AlbumDetails() {
   const {
@@ -15,8 +15,6 @@ function AlbumDetails() {
     selectedAlbum,
   } = useAlbumDetails();
 
-  
-
   return (
     <div>
       <Navbar />
@@ -24,12 +22,14 @@ function AlbumDetails() {
         <AlbumInfo album={album} onEdit={handleEdit} onDelete={handleDelete} />
       </div>
       <Footer />
-      <EditAlbumModal
+      <AlbumModal
         show={showEditAlbumModal}
         handleClose={() => setShowEditAlbumModal(false)}
         handleSave={handleSaveEditAlbum}
         albumData={selectedAlbum}
+        isEdit={true}
       />
+      
     </div>
   );
 }

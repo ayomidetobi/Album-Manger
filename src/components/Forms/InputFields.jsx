@@ -1,15 +1,28 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-const InputField = ({ label, id, name, type, value, onChange, options, multiple, min, max }) => {
-  if (type === 'select') {
+const InputField = ({
+  label,
+  id,
+  name,
+  type,
+  value,
+  onChange,
+  options,
+  multiple,
+  min,
+  max,
+}) => {
+  if (type === "select") {
     return (
       <div className="mb-3">
-        <label htmlFor={id} className="form-label">{label}</label>
+        <label htmlFor={id} className="form-label font-black">
+          {label}
+        </label>
         <select
           className="form-select"
           id={id}
           name={name}
-          value={value}
+          value={value || ""}
           onChange={onChange}
           multiple={multiple}
         >
@@ -21,23 +34,41 @@ const InputField = ({ label, id, name, type, value, onChange, options, multiple,
         </select>
       </div>
     );
+  } else if (type === "file") {
+    return (
+      <div className="mb-3">
+        <label htmlFor={id} className="form-label font-black">
+          {label}
+        </label>
+        <input
+          type={type}
+          className="form-control"
+          id={id}
+          name={name}
+          onChange={onChange}
+          multiple={multiple}
+        />
+      </div>
+    );
+  } else {
+    return (
+      <div className="mb-3">
+        <label htmlFor={id} className="form-label font-black">
+          {label}
+        </label>
+        <input
+          type={type}
+          className="form-control"
+          id={id}
+          name={name}
+          value={value || ""}
+          onChange={onChange}
+          min={min}
+          max={max}
+        />
+      </div>
+    );
   }
-
-  return (
-    <div className="mb-3">
-      <label htmlFor={id} className="form-label">{label}</label>
-      <input
-        type={type}
-        className="form-control"
-        id={id}
-        name={name}
-        value={value}
-        onChange={onChange}
-        min={min}
-        max={max}
-      />
-    </div>
-  );
 };
 
 InputField.propTypes = {
@@ -55,7 +86,7 @@ InputField.propTypes = {
     PropTypes.shape({
       label: PropTypes.string.isRequired,
       value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-    })
+    }),
   ),
   multiple: PropTypes.bool,
   min: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -65,8 +96,8 @@ InputField.propTypes = {
 InputField.defaultProps = {
   options: [],
   multiple: false,
-  min: '',
-  max: '',
+  min: "",
+  max: "",
 };
 
 export default InputField;

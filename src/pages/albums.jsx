@@ -1,13 +1,12 @@
-import Footer from '../components/footer';
-import Navbar from '../components/navbar';
-import NewAlbumModal from './create-album';
-import EditAlbumModal from './edit-album';
-import { useAlbums } from '../api/album-api';
-import AlbumSearchSortLogic from '../api/search-api';
-import { useAlbumModals } from '../Hooks/useAlbumModal';
-import SearchBar from '../components/Forms/SearchInput';
-import SortControls from '../components/SortList';
-import AlbumList from '../components/AlbumList';
+import Footer from "../components/layout/footer";
+import Navbar from "../components/layout/navbar";
+import { useAlbums } from "../api/album-api";
+import AlbumSearchSortLogic from "../api/search-api";
+import { useAlbumModals } from "../Hooks/useAlbumModal";
+import SearchBar from "../components/Forms/SearchInput";
+import SortControls from "../components/Album/SortList";
+import AlbumList from "../components/Album/AlbumList";
+import AlbumModal from "../components/Album/AlbumModal";
 
 function Albums() {
   const {
@@ -39,8 +38,13 @@ function Albums() {
     <>
       <Navbar />
       <div className="container lg:px-20 md:px-5">
-        
-        <button className='btn bg-dark text-white float-end my-4' onClick={() => setShowModal(true)} > add new album</button>
+        <button
+          className="btn bg-dark text-white float-end my-4"
+          onClick={() => setShowModal(true)}
+        >
+          {" "}
+          add new album
+        </button>
         <SearchBar query={query} handleSearch={handleSearch} />
         <SortControls
           sortedField={sortedField}
@@ -59,17 +63,21 @@ function Albums() {
         />
       </div>
       <Footer />
-      <NewAlbumModal
+      <AlbumModal
         show={showModal}
         handleClose={() => setShowModal(false)}
         handleSave={handleSaveAlbum}
+        isEdit={false}
+        albumData={null}
       />
       {selectedAlbum && (
-        <EditAlbumModal
+       
+        <AlbumModal 
           show={showEditAlbumModal}
           handleClose={() => setShowEditAlbumModal(false)}
           handleSave={handleSaveEditAlbum}
           albumData={selectedAlbum}
+          isEdit={true}
         />
       )}
     </>

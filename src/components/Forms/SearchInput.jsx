@@ -1,8 +1,9 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+import BackButton from "./BackButton";
 
 const SearchBar = ({ query, handleSearch }) => (
   <div className="my-4">
-    <a href='/' className="text-dark text-2xl bi bi-arrow-left my-3"></a>
+    <BackButton />
     <input
       type="text"
       className="form-control"

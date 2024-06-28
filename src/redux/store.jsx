@@ -1,7 +1,7 @@
-import { configureStore } from '@reduxjs/toolkit';
-import authReducer, { loadAuthFromStorage } from './authSlice';
-import albumReducer from './albumSlice';
-import activeLinkReducer from './ActiveLinkSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import authReducer, { loadAuthFromStorage } from "./authSlice";
+import albumReducer from "./albumSlice";
+import activeLinkReducer from "./ActiveLinkSlice";
 
 const store = configureStore({
   reducer: {

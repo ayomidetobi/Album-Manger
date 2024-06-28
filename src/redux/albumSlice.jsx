@@ -1,7 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const albumSlice = createSlice({
-  name: 'albums',
+  name: "albums",
   initialState: {
     albums: [],
     album: null,
@@ -14,13 +14,17 @@ const albumSlice = createSlice({
       state.albums.push(action.payload);
     },
     updateAlbum: (state, action) => {
-      const index = state.albums.findIndex(album => album.id === action.payload.id);
+      const index = state.albums.findIndex(
+        (album) => album.id === action.payload.id,
+      );
       if (index !== -1) {
         state.albums[index] = action.payload;
       }
     },
     deleteAlbum: (state, action) => {
-      state.albums = state.albums.filter(album => album.id !== action.payload);
+      state.albums = state.albums.filter(
+        (album) => album.id !== action.payload,
+      );
     },
     setAlbum: (state, action) => {
       state.album = action.payload;
@@ -28,6 +32,7 @@ const albumSlice = createSlice({
   },
 });
 
-export const { setAlbums, addAlbum, updateAlbum, deleteAlbum, setAlbum } = albumSlice.actions;
+export const { setAlbums, addAlbum, updateAlbum, deleteAlbum, setAlbum } =
+  albumSlice.actions;
 
 export default albumSlice.reducer;

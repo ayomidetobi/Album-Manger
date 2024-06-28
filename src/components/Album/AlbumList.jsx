@@ -1,16 +1,13 @@
-import PropTypes from 'prop-types';
-import AlbumCard from './Album/AlbumCard';
-import AlbumListLoader from './Loader/AlbumListLoader';
+import PropTypes from "prop-types";
+import AlbumCard from "./AlbumCard";
+import AlbumListLoader from "../Loader/AlbumListLoader";
 
 const AlbumList = ({ albums, isLoading, onEdit }) => (
   <>
     {isLoading ? (
       <AlbumListLoader />
     ) : albums && albums.length > 0 ? (
-      <AlbumCard
-        albums={albums}
-        onEdit={onEdit}
-      />
+      <AlbumCard albums={albums} onEdit={onEdit} />
     ) : (
       <div>No albums found.</div>
     )}
@@ -33,9 +30,9 @@ AlbumList.propTypes = {
           id: PropTypes.number,
           name: PropTypes.string.isRequired,
           duration: PropTypes.string.isRequired,
-        })
+        }),
       ),
-    })
+    }),
   ).isRequired,
   isLoading: PropTypes.bool.isRequired,
   onEdit: PropTypes.func.isRequired,

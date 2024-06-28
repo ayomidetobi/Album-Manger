@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react';
-import { getInputFields } from '../utils/InputFieldConfig';
+import { useState, useEffect } from "react";
+import { getInputFields } from "../utils/InputFieldConfig";
 
 export const useAlbumForm = (initialData, handleSave) => {
   const [albumData, setAlbumData] = useState({
-    album_name: '',
-    artist_name: '',
-    year_of_release: '',
-    ranking: '',
-    genre: 'Jazz',
-    description: '',
+    album_name: "",
+    artist_name: "",
+    year_of_release: "",
+    ranking: "",
+    genre: "Jazz",
+    description: "",
     album_cover: null,
-    tracks: [{ name: '', duration: '' }],
+    tracks: [{ name: "", duration: "" }],
   });
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export const useAlbumForm = (initialData, handleSave) => {
         ranking: initialData.ranking,
         genre: initialData.genre,
         description: initialData.description,
-        album_cover: null,
+        album_cover:  null,
         tracks: initialData.tracks.map((track) => ({
           name: track.name,
           duration: track.duration,
@@ -49,7 +49,7 @@ export const useAlbumForm = (initialData, handleSave) => {
   const handleTrackChange = (index, e) => {
     const { name, value } = e.target;
     const updatedTracks = albumData.tracks.map((track, i) =>
-      i === index ? { ...track, [name]: value } : track
+      i === index ? { ...track, [name]: value } : track,
     );
     setAlbumData((prevData) => ({
       ...prevData,
@@ -60,7 +60,7 @@ export const useAlbumForm = (initialData, handleSave) => {
   const addTrack = () => {
     setAlbumData((prevData) => ({
       ...prevData,
-      tracks: [...prevData.tracks, { name: '', duration: '' }],
+      tracks: [...prevData.tracks, { name: "", duration: "" }],
     }));
   };
 
@@ -76,14 +76,14 @@ export const useAlbumForm = (initialData, handleSave) => {
     e.preventDefault();
     handleSave(albumData);
     setAlbumData({
-      album_name: '',
-      artist_name: '',
-      year_of_release: '',
-      ranking: '',
-      genre: 'Jazz',
-      description: '',
+      album_name: "",
+      artist_name: "",
+      year_of_release: "",
+      ranking: "",
+      genre: "Jazz",
+      description: "",
       album_cover: null,
-      tracks: [{ name: '', duration: '' }],
+      tracks: [{ name: "", duration: "" }],
     });
   };
 
