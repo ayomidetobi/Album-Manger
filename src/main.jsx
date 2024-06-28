@@ -15,6 +15,7 @@ import PrivateRoute from "./utils/private-route.jsx";
 import { persistQueryClient } from "react-query/persistQueryClient-experimental";
 import { createWebStoragePersistor } from "react-query/createWebStoragePersistor-experimental";
 import { ReactQueryDevtools } from "react-query/devtools";
+import About from "./pages/about.jsx";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -43,6 +44,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Routes>
             <Route path="/" element={<App />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/about" element={<About />} />
             <Route
               path="/albums"
               element={

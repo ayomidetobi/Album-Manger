@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 const FormInput = ({ type, value, onChange, id, placeholder, label }) => {
   return (
@@ -26,7 +26,7 @@ FormInput.propTypes = {
 };
 
 FormInput.defaultProps = {
-  placeholder: '',
+  placeholder: "",
 };
 
 export default FormInput;

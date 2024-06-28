@@ -3,10 +3,7 @@ import { useAlbumForm } from "../../Hooks/useAlbumForm";
 import InputField from "../Forms/InputFields";
 
 const AlbumModal = ({ show, handleClose, handleSave, albumData, isEdit }) => {
-  const {
-    handleSubmit,
-    inputFields,
-  } = useAlbumForm(albumData, handleSave);
+  const { handleSubmit, inputFields } = useAlbumForm(albumData, handleSave);
 
   return (
     <>
@@ -15,7 +12,9 @@ const AlbumModal = ({ show, handleClose, handleSave, albumData, isEdit }) => {
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header bg-slate-100">
-              <h5 className="modal-title text-orange-700 font-black">{isEdit ? "Edit Album" : "New Album"}</h5>
+              <h5 className="modal-title text-orange-700 font-black">
+                {isEdit ? "Edit Album" : "New Album"}
+              </h5>
               <button
                 type="button"
                 className="btn-close"
@@ -93,7 +92,7 @@ AlbumModal.propTypes = {
         id: PropTypes.number,
         name: PropTypes.string,
         duration: PropTypes.string,
-      })
+      }),
     ),
   }),
   isEdit: PropTypes.bool,

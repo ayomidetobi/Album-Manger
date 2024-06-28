@@ -42,7 +42,6 @@ function Albums() {
           className="btn bg-dark text-white float-end my-4"
           onClick={() => setShowModal(true)}
         >
-          {" "}
           add new album
         </button>
         <SearchBar query={query} handleSearch={handleSearch} />
@@ -71,8 +70,7 @@ function Albums() {
         albumData={null}
       />
       {selectedAlbum && (
-       
-        <AlbumModal 
+        <AlbumModal
           show={showEditAlbumModal}
           handleClose={() => setShowEditAlbumModal(false)}
           handleSave={handleSaveEditAlbum}

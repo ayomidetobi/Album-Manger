@@ -22,7 +22,7 @@ export const useAlbumForm = (initialData, handleSave) => {
         ranking: initialData.ranking,
         genre: initialData.genre,
         description: initialData.description,
-        album_cover:  null,
+        album_cover: null,
         tracks: initialData.tracks.map((track) => ({
           name: track.name,
           duration: track.duration,

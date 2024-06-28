@@ -29,7 +29,6 @@ function AlbumDetails() {
         albumData={selectedAlbum}
         isEdit={true}
       />
-      
     </div>
   );
 }

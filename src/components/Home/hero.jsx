@@ -14,8 +14,11 @@ const Hero = () => {
             Endless inspiration. Start organizing and managing your albums with
             AlbumManager.
           </p>
-          
-          <Link className="btn btn-dark mt-5" to={"/login"}> SIGN UP</Link>
+
+          <Link className="btn btn-dark mt-5" to={"/login"}>
+            {" "}
+            SIGN UP
+          </Link>
         </div>
         <div className="col-lg-6 d-sm-none "></div>
       </div>

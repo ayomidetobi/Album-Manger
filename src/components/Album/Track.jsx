@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-function Track({  artist }) {
+function Track({ artist }) {
   const trackData = [
     { name: "Track 1", duration: "3:45" },
     { name: "Track 2", duration: "4:20" },

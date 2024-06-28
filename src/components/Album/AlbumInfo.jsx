@@ -11,7 +11,7 @@ function AlbumInfo({ album, onEdit, onDelete }) {
     <div>
       <div className="row">
         <div className="py-3">
-         <BackButton />
+          <BackButton />
           <button
             className="btn bg-danger-subtle ms-3 text-danger float-end"
             onClick={onDelete}
