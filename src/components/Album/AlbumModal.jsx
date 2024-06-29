@@ -3,7 +3,11 @@ import { useAlbumForm } from "../../Hooks/useAlbumForm";
 import InputField from "../Forms/InputFields";
 
 const AlbumModal = ({ show, handleClose, handleSave, albumData, isEdit }) => {
-  const { handleSubmit, inputFields } = useAlbumForm(albumData, handleSave);
+  const {
+  
+    handleSubmit,
+    inputFields,
+  } = useAlbumForm(albumData, handleSave);
 
   return (
     <>
@@ -12,9 +16,7 @@ const AlbumModal = ({ show, handleClose, handleSave, albumData, isEdit }) => {
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header bg-slate-100">
-              <h5 className="modal-title text-orange-700 font-black">
-                {isEdit ? "Edit Album" : "New Album"}
-              </h5>
+              <h5 className="modal-title text-orange-700 font-black">{isEdit ? "Edit Album" : "New Album"}</h5>
               <button
                 type="button"
                 className="btn-close"
@@ -26,42 +28,7 @@ const AlbumModal = ({ show, handleClose, handleSave, albumData, isEdit }) => {
                 {inputFields.map((field, index) => (
                   <InputField key={index} {...field} />
                 ))}
-                {/* <div className="mb-3">
-                  <label className="form-label">Tracks</label>
-                  {formData.tracks.map((track, index) => (
-                    <div key={index} className="d-flex mb-2">
-                      <InputField
-                        label="Song Name"
-                        id={`trackName${index}`}
-                        name="name"
-                        type="text"
-                        placeholder="Track Name"
-                        value={track.name}
-                        onChange={(e) => handleTrackChange(index, e)}
-                        required
-                      />
-                      <InputField
-                        label="Duration"
-                        id={`trackDuration${index}`}
-                        name="duration"
-                        type="text"
-                        placeholder={"Duration"}
-                        value={track.duration}
-                        onChange={(e) => handleTrackChange(index, e)}
-                        required
-                      />
-                    </div>
-                  ))}
-                  <div>
-                  <button
-                    type="button"
-                    className="btn border-orange-700 text-orange-700 font-black hover:bg-orange-700 hover:text-white"
-                    onClick={addTrack}
-                  >
-                    Add Track
-                  </button>
-                  </div>
-                </div> */}
+               
                 <button type="submit" className="btn btn-dark ">
                   {isEdit ? "Save Changes" : "Create Album"}
                 </button>
@@ -92,10 +59,13 @@ AlbumModal.propTypes = {
         id: PropTypes.number,
         name: PropTypes.string,
         duration: PropTypes.string,
-      }),
+      })
     ),
   }),
   isEdit: PropTypes.bool,
 };
 
 export default AlbumModal;
+
+
+

@@ -14,13 +14,13 @@ function Track({ artist }) {
       <table className="table table-striped table-hover">
         <thead>
           <tr>
-            <th scope="col" className="min-w-24">
+            <th scope="col" className="min-w-8">
               #
             </th>
             <th scope="col" className="min-w-24">
               Track
             </th>
-            <th scope="col" className="min-w-24">
+            <th scope="col" className="min-w-32">
               Artists
             </th>
             <th scope="col" className="min-w-24">
@@ -34,7 +34,7 @@ function Track({ artist }) {
             <tr key={index}>
               <th scope="row">{index + 1}</th>
               <td>{track.name}</td>
-              <td>{artist}</td>
+              <td >{artist}</td>
               <td>{track.duration}</td>
               {/* <td className="min-w-24">
                 <i className="bi bi-pencil p-2 rounded text-white text-sm bg-dark"></i>

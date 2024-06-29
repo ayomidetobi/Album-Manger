@@ -10,7 +10,7 @@ import {
 } from "../redux/albumSlice";
 import { toast } from "react-toastify";
 
-const apiUrl = "http://localhost:8000/api";
+const apiUrl = "https://albums-api-spej.onrender.com/api";
 
 export const useAlbums = (token) => {
   const dispatch = useDispatch();

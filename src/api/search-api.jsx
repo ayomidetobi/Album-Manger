@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { useAlbums } from "./album-api";
 
-const apiUrl = "http://localhost:8000/api";
+const apiUrl = "https://albums-api-spej.onrender.com/api";
 
 const searchAlbums = async (query) => {
   try {

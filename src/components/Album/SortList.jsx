@@ -42,9 +42,9 @@ const SortControls = ({
 SortControls.propTypes = {
   sortedField: PropTypes.string,
   sortOrder: PropTypes.oneOf(["asc", "desc"]),
-  handleSort: PropTypes.func.isRequired,
-  setSortedField: PropTypes.func.isRequired,
-  setSortOrder: PropTypes.func.isRequired,
+  handleSort: PropTypes.func,
+  setSortedField: PropTypes.func,
+  setSortOrder: PropTypes.func,
 };
 
 export default SortControls;
