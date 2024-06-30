@@ -11,9 +11,9 @@ const AlbumModal = ({
   isLoading,
 }) => {
   const { handleSubmit, inputFields } = useAlbumForm(albumData, handleSave);
-  if (!albumData) {
-    return <div>loading ..</div>;
-  }
+  // if (!albumData) {
+  //   return <div>loading ..</div>;
+  // }
 
   return (
     <>

@@ -35,7 +35,7 @@ function Albums() {
     isCreatingAlbum,
     isUpdatingAlbum,
   } = useAlbumModals(createAlbum, updateAlbum);
-  console.log(selectedAlbum);
+  console.log(albums);
   return (
     <>
       <Navbar />

@@ -11,8 +11,17 @@ const searchAlbums = async (query) => {
     return response.data;
   } catch (error) {
     console.error("Error searching albums:", error);
-    return [];
+    return []; // Return empty array if there's an error
   }
+};
+
+const useDebounce = (func, delay) => {
+  let timer;
+  return function (...args) {
+    const context = this;
+    clearTimeout(timer);
+    timer = setTimeout(() => func.apply(context, args), delay);
+  };
 };
 
 const useSortedAlbums = (albums, sortedField, sortOrder) => {
@@ -48,6 +57,8 @@ const AlbumSearchSortLogic = () => {
     setAlbums(initialAlbums); // Update albums when initialAlbums change
   }, [initialAlbums]);
 
+  const handleSearchDebounced = useDebounce(handleSearch, 5000);
+
   async function handleSearch(query) {
     setQuery(query);
     if (query.trim() === "") {
@@ -75,7 +86,7 @@ const AlbumSearchSortLogic = () => {
       query,
       sortedField,
       sortOrder,
-      handleSearch,
+      handleSearch: handleSearchDebounced,
       handleSort,
     };
   }
@@ -88,7 +99,7 @@ const AlbumSearchSortLogic = () => {
       query,
       sortedField,
       sortOrder,
-      handleSearch,
+      handleSearch: handleSearchDebounced,
       handleSort,
     };
   }
@@ -99,7 +110,7 @@ const AlbumSearchSortLogic = () => {
     query,
     sortedField,
     sortOrder,
-    handleSearch,
+    handleSearch: handleSearchDebounced,
     handleSort,
     setSortedField,
     setSortOrder,

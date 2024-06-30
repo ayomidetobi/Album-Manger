@@ -25,10 +25,13 @@ export const useAlbums = (token) => {
     "albums",
     async () => {
       const response = await axios.get(`${apiUrl}/albums/`);
+      console.log(response.data)
       return response.data;
+      
     },
     {
       onSuccess: (data) => dispatch(setAlbums(data)),
+      
     },
   );
 

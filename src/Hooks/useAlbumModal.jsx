@@ -25,7 +25,7 @@ export const useAlbumModals = () => {
         updatedAlbum,
       });
     }
-    // setShowEditAlbumModal(false);
+    setShowEditAlbumModal(false);
   };
 
   const handleSaveAlbum = (albumData) => {
