@@ -57,8 +57,7 @@ const AlbumSearchSortLogic = () => {
     setAlbums(initialAlbums);
   }, [initialAlbums]);
 
-  async function handleSearch(query) {
-    const handleSearchDebounced = useDebounce(query, 5000);
+  const handleSearch = useDebounce(async (query) => {
     setQuery(query);
     if (query.trim() === "") {
       setAlbums(initialAlbums);
@@ -69,8 +68,7 @@ const AlbumSearchSortLogic = () => {
     const fetchedAlbums = await searchAlbums(query);
     setAlbums(fetchedAlbums);
     setIsLoading(false);
-  }
-
+  }, 500);
   const handleSort = (field) => {
     setSortedField(field);
     setSortOrder(sortOrder === "asc" ? "desc" : "asc");
