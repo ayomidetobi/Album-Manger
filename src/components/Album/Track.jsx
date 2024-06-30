@@ -7,7 +7,7 @@ function Track({ artist }) {
     { name: "Track 3", duration: "5:10" },
     { name: "Track 4", duration: "3:30" },
     { name: "Track 5", duration: "4:00" },
-    { name: "Track 6", duration: "2:50" },
+    { name: "Track 6", duration: "2:00" },
   ];
   return (
     <div className="overflow-x-auto">
