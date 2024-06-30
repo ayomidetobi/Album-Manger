@@ -11,7 +11,7 @@ const searchAlbums = async (query) => {
     return response.data;
   } catch (error) {
     console.error("Error searching albums:", error);
-    return []; // Return empty array if there's an error
+    return [];
   }
 };
 

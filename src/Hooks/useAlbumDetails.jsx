@@ -43,7 +43,7 @@ export const useAlbumDetails = () => {
 
   const handleSaveEditAlbum = (updatedAlbum) => {
     if (selectedAlbum) {
-      updateAlbum.mutate(
+      updateAlbum(
         { id: selectedAlbum.id, updatedAlbum },
         {
           onSuccess: () => {
