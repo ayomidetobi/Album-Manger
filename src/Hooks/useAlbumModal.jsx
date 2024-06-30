@@ -25,10 +25,12 @@ export const useAlbumModals = () => {
         updatedAlbum,
       });
     }
+    setShowEditAlbumModal(false);
   };
 
   const handleSaveAlbum = (albumData) => {
     createAlbum(albumData);
+    setShowModal(false);
   };
 
   return {

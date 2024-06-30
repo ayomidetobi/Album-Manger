@@ -49,7 +49,6 @@ export const useAlbumDetails = () => {
           onSuccess: () => {
             setShowEditAlbumModal(false);
             setSelectedAlbum(null);
-            // console.log(selectedAlbum)
           },
         },
       );
