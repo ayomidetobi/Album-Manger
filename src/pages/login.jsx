@@ -3,6 +3,7 @@ import { useAuth } from "../api/auth-api";
 import { useNavigate } from "react-router-dom";
 import FormInput from "../components/Forms/FormInputs";
 import GlobalLoader from "../components/Loader/GlobalLoader";
+import Navbar from "../components/layout/navbar";
 
 function Login() {
   const { login, isUserLoading } = useAuth();
@@ -21,8 +22,9 @@ function Login() {
 
   return (
     <div>
+      <Navbar />
       {isUserLoading && <GlobalLoader />}
-      <main className="form-signin w-80 m-auto -z-50">
+      <main className="form-signin w-80 m-auto py-16">
         <form onSubmit={handleSubmit}>
           <h1 className="h3 mb-3 fw-normal mt-20">Please sign in</h1>
 
@@ -55,12 +57,13 @@ function Login() {
               Remember me
             </label>
           </div>
-          <button className="btn btn-primary w-100 py-2" type="submit">
+          <button className="btn btn-warning bg-orange-700 text-white font-black w-100 py-2" type="submit">
             Sign in
           </button>
           <p className="mt-5 mb-3 text-body-secondary">© 2017–2024</p>
         </form>
       </main>
+      {/* <Footer /> */}
     </div>
   );
 }
