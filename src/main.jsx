@@ -20,8 +20,8 @@ import About from "./pages/about.jsx";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      cacheTime: 1000 * 60 * 60 * 2, // 2 hours
-      staleTime: 1000 * 60 * 60 * 2,
+      cacheTime: 1000 * 10, // 2 hours
+      staleTime: 1000 * 10 * 60,
     },
   },
 });
@@ -33,7 +33,7 @@ const sessionStoragePersistor = createWebStoragePersistor({
 persistQueryClient({
   queryClient,
   persistor: sessionStoragePersistor,
-  maxAge: 1000 * 60 * 60 * 2, // 2 hours
+  maxAge: 0, // 2 hours
 });
 
 ReactDOM.createRoot(document.getElementById("root")).render(

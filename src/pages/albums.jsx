@@ -32,8 +32,10 @@ function Albums() {
     setSelectedAlbum,
     handleSaveEditAlbum,
     handleSaveAlbum,
+    isCreatingAlbum,
+    isUpdatingAlbum,
   } = useAlbumModals(createAlbum, updateAlbum);
-
+  console.log(selectedAlbum);
   return (
     <>
       <Navbar />
@@ -68,6 +70,7 @@ function Albums() {
         handleSave={handleSaveAlbum}
         isEdit={false}
         albumData={null}
+        isLoading={isCreatingAlbum}
       />
       {selectedAlbum && (
         <AlbumModal
@@ -76,6 +79,7 @@ function Albums() {
           handleSave={handleSaveEditAlbum}
           albumData={selectedAlbum}
           isEdit={true}
+          isLoading={isUpdatingAlbum}
         />
       )}
     </>

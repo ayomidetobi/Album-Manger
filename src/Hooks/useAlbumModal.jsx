@@ -12,31 +12,23 @@ export const useAlbumModals = () => {
     if (authData) {
       const parsedAuthData = JSON.parse(authData);
       setToken(parsedAuthData.token);
-      console.log(token);
     }
-  }, [token]);
-  const { createAlbum, updateAlbum } = useAlbums(token);
+  }, []);
+
+  const { createAlbum, updateAlbum, isCreatingAlbum, isUpdatingAlbum } =
+    useAlbums(token);
 
   const handleSaveEditAlbum = (updatedAlbum) => {
     if (selectedAlbum) {
-      updateAlbum.mutate(
-        { id: selectedAlbum.id, updatedAlbum },
-        {
-          onSuccess: () => {
-            setShowEditAlbumModal(false);
-            setSelectedAlbum(null);
-          },
-        },
-      );
+      updateAlbum({
+        id: selectedAlbum.id,
+        updatedAlbum,
+      });
     }
   };
 
   const handleSaveAlbum = (albumData) => {
-    createAlbum.mutate(albumData, {
-      onSuccess: () => {
-        setShowModal(false);
-      },
-    });
+    createAlbum(albumData);
   };
 
   return {
@@ -49,5 +41,7 @@ export const useAlbumModals = () => {
     setSelectedAlbum,
     handleSaveEditAlbum,
     handleSaveAlbum,
+    isCreatingAlbum,
+    isUpdatingAlbum,
   };
 };

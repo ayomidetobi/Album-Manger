@@ -22,6 +22,7 @@ function AlbumDetails() {
         <AlbumInfo album={album} onEdit={handleEdit} onDelete={handleDelete} />
       </div>
       <Footer />
+
       <AlbumModal
         show={showEditAlbumModal}
         handleClose={() => setShowEditAlbumModal(false)}

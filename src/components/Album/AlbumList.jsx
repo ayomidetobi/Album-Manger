@@ -33,7 +33,7 @@ AlbumList.propTypes = {
         }),
       ),
     }),
-  ).isRequired,
+  ),
   isLoading: PropTypes.bool.isRequired,
   onEdit: PropTypes.func.isRequired,
 };

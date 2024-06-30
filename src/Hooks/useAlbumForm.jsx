@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getInputFields } from "../utils/InputFieldConfig";
+import { validateAlbumForm } from "../utils/FormValidation";
 
 export const useAlbumForm = (initialData, handleSave) => {
   const [albumData, setAlbumData] = useState({
@@ -12,6 +13,7 @@ export const useAlbumForm = (initialData, handleSave) => {
     album_cover: null,
     tracks: [{ name: "", duration: "" }],
   });
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     if (initialData) {
@@ -74,6 +76,12 @@ export const useAlbumForm = (initialData, handleSave) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const validationErrors = validateAlbumForm(albumData);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
     handleSave(albumData);
     setAlbumData({
       album_name: "",
@@ -86,8 +94,12 @@ export const useAlbumForm = (initialData, handleSave) => {
       tracks: [{ name: "", duration: "" }],
     });
   };
-
-  const inputFields = getInputFields(albumData, handleChange, handleFileChange);
+  const inputFields = getInputFields(
+    albumData,
+    handleChange,
+    handleFileChange,
+    errors,
+  );
 
   return {
     albumData,
@@ -98,5 +110,6 @@ export const useAlbumForm = (initialData, handleSave) => {
     removeTrack,
     handleSubmit,
     inputFields,
+    errors,
   };
 };

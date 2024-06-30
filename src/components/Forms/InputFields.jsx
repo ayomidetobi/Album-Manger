@@ -11,6 +11,7 @@ const InputField = ({
   multiple,
   min,
   max,
+  error,
 }) => {
   if (type === "select") {
     return (
@@ -32,6 +33,7 @@ const InputField = ({
             </option>
           ))}
         </select>
+        {error && <div className="text-danger">{error}</div>}
       </div>
     );
   } else if (type === "file") {
@@ -48,6 +50,7 @@ const InputField = ({
           onChange={onChange}
           multiple={multiple}
         />
+        {error && <div className="text-danger">{error}</div>}
       </div>
     );
   } else {
@@ -66,6 +69,7 @@ const InputField = ({
           min={min}
           max={max}
         />
+        {error && <div className="text-danger">{error}</div>}
       </div>
     );
   }
@@ -76,6 +80,7 @@ InputField.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
+  error: PropTypes.string,
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,

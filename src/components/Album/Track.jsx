@@ -34,7 +34,7 @@ function Track({ artist }) {
             <tr key={index}>
               <th scope="row">{index + 1}</th>
               <td>{track.name}</td>
-              <td >{artist}</td>
+              <td>{artist}</td>
               <td>{track.duration}</td>
               {/* <td className="min-w-24">
                 <i className="bi bi-pencil p-2 rounded text-white text-sm bg-dark"></i>

@@ -6,7 +6,7 @@ function About() {
   return (
     <div>
       <Navbar />
-        <AboutContent />
+      <AboutContent />
       <Footer />
     </div>
   );

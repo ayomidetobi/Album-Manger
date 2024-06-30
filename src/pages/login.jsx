@@ -2,9 +2,10 @@ import { useState } from "react";
 import { useAuth } from "../api/auth-api";
 import { useNavigate } from "react-router-dom";
 import FormInput from "../components/Forms/FormInputs";
+import GlobalLoader from "../components/Loader/GlobalLoader";
 
 function Login() {
-  const { login } = useAuth();
+  const { login, isUserLoading } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -20,7 +21,8 @@ function Login() {
 
   return (
     <div>
-      <main className="form-signin w-80 m-auto">
+      {isUserLoading && <GlobalLoader />}
+      <main className="form-signin w-80 m-auto -z-50">
         <form onSubmit={handleSubmit}>
           <h1 className="h3 mb-3 fw-normal mt-20">Please sign in</h1>
 

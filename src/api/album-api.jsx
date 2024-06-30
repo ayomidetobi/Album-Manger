@@ -9,6 +9,7 @@ import {
   setAlbum,
 } from "../redux/albumSlice";
 import { toast } from "react-toastify";
+import extractErrorMessage from "../utils/ErrorsMessage";
 
 const apiUrl = "https://albums-api-spej.onrender.com/api";
 
@@ -18,8 +19,8 @@ export const useAlbums = (token) => {
 
   const {
     data: albumData,
-    isLoading,
-    isError,
+    isLoading: isAlbumsLoading,
+    isError: isAlbumsError,
   } = useQuery(
     "albums",
     async () => {
@@ -31,7 +32,7 @@ export const useAlbums = (token) => {
     },
   );
 
-  const createAlbum = useMutation(
+  const { mutate: createAlbum, isLoading: isCreatingAlbum } = useMutation(
     async (newAlbum) => {
       const formData = new FormData();
       formData.append("album_name", newAlbum.album_name);
@@ -69,44 +70,45 @@ export const useAlbums = (token) => {
     },
   );
 
-  const updateAlbumMutation = useMutation(
-    async ({ id, updatedAlbum }) => {
-      const formData = new FormData();
-      formData.append("album_name", updatedAlbum.album_name);
-      formData.append("artist_name", updatedAlbum.artist_name);
-      formData.append("year_of_release", updatedAlbum.year_of_release);
-      formData.append("ranking", updatedAlbum.ranking);
-      formData.append("genre", updatedAlbum.genre);
-      formData.append("description", updatedAlbum.description);
-      if (updatedAlbum.album_cover) {
-        formData.append("album_cover", updatedAlbum.album_cover);
-      }
-      updatedAlbum.tracks.forEach((track, index) => {
-        formData.append(`tracks[${index}][name]`, track.name);
-        formData.append(`tracks[${index}][duration]`, track.duration);
-      });
+  const { mutate: updateAlbumMutation, isLoading: isUpdatingAlbum } =
+    useMutation(
+      async ({ id, updatedAlbum }) => {
+        const formData = new FormData();
+        formData.append("album_name", updatedAlbum.album_name);
+        formData.append("artist_name", updatedAlbum.artist_name);
+        formData.append("year_of_release", updatedAlbum.year_of_release);
+        formData.append("ranking", updatedAlbum.ranking);
+        formData.append("genre", updatedAlbum.genre);
+        formData.append("description", updatedAlbum.description);
+        if (updatedAlbum.album_cover) {
+          formData.append("album_cover", updatedAlbum.album_cover);
+        }
+        updatedAlbum.tracks.forEach((track, index) => {
+          formData.append(`tracks[${index}][name]`, track.name);
+          formData.append(`tracks[${index}][duration]`, track.duration);
+        });
 
-      const response = await axios.put(`${apiUrl}/albums/${id}/`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Token ${token}`,
+        const response = await axios.put(`${apiUrl}/albums/${id}/`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Token ${token}`,
+          },
+        });
+        return response.data;
+      },
+      {
+        onSuccess: (data, variables) => {
+          dispatch(updateAlbum(data));
+          toast.success("Album updated successfully");
+          queryClient.invalidateQueries("albums");
+          queryClient.invalidateQueries(["album", variables.id]); // Invalidate the single album query
         },
-      });
-      return response.data;
-    },
-    {
-      onSuccess: (data, variables) => {
-        dispatch(updateAlbum(data));
-        toast.success("Album updated successfully");
-        queryClient.invalidateQueries("albums");
-        queryClient.invalidateQueries(["album", variables.id]); // Invalidate the single album query
+        onError: (error) => {
+          const errorMessage = extractErrorMessage(error);
+          toast.error(errorMessage);
+        },
       },
-      onError: (error) => {
-        const errorMessage = extractErrorMessage(error);
-        toast.error(errorMessage);
-      },
-    },
-  );
+    );
 
   const deleteAlbumMutation = useMutation(
     async (id) => {
@@ -145,32 +147,13 @@ export const useAlbums = (token) => {
 
   return {
     albums: albumData,
-    isLoading,
-    isError,
+    isLoading: isAlbumsLoading,
+    isError: isAlbumsError,
     createAlbum,
     updateAlbum: updateAlbumMutation,
     deleteAlbum: deleteAlbumMutation,
     useGetAnAlbum,
+    isCreatingAlbum,
+    isUpdatingAlbum,
   };
-};
-
-// Helper function to extract detailed error messages
-const extractErrorMessage = (error) => {
-  if (error.response && error.response.data) {
-    const errorData = error.response.data;
-    if (typeof errorData === "string") {
-      return errorData;
-    } else if (typeof errorData === "object") {
-      let errorMessage = "";
-      for (const key in errorData) {
-        if (Array.isArray(errorData[key])) {
-          errorMessage += ` ${errorData[key].join(", ")}\n`;
-        } else {
-          errorMessage += ` ${errorData[key]}\n`;
-        }
-      }
-      return errorMessage.trim();
-    }
-  }
-  return "An unknown error occurred";
 };

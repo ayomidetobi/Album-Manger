@@ -1,4 +1,9 @@
-export const getInputFields = (albumData, handleChange, handleFileChange) => [
+export const getInputFields = (
+  albumData,
+  handleChange,
+  handleFileChange,
+  errors,
+) => [
   {
     label: "Album Name",
     id: "formAlbumName",
@@ -6,6 +11,7 @@ export const getInputFields = (albumData, handleChange, handleFileChange) => [
     type: "text",
     value: albumData.album_name,
     onChange: handleChange,
+    error: errors.album_name,
   },
   {
     label: "Artist Name",
@@ -14,6 +20,7 @@ export const getInputFields = (albumData, handleChange, handleFileChange) => [
     type: "text",
     value: albumData.artist_name,
     onChange: handleChange,
+    error: errors.artist_name,
   },
   {
     label: "Year of Release",
@@ -22,6 +29,7 @@ export const getInputFields = (albumData, handleChange, handleFileChange) => [
     type: "number",
     value: albumData.year_of_release,
     onChange: handleChange,
+    error: errors.year_of_release,
   },
   {
     label: "Ranking",
@@ -30,6 +38,7 @@ export const getInputFields = (albumData, handleChange, handleFileChange) => [
     type: "number",
     value: albumData.ranking,
     onChange: handleChange,
+    error: errors.ranking,
     // min: '1',
     // max: '5',
   },
@@ -47,6 +56,7 @@ export const getInputFields = (albumData, handleChange, handleFileChange) => [
       { label: "Classical", value: "classical" },
       { label: "Hip-Hop", value: "hip-Hop" },
     ],
+    error: errors.genre,
   },
   {
     label: "Description",
@@ -55,6 +65,7 @@ export const getInputFields = (albumData, handleChange, handleFileChange) => [
     type: "textarea",
     value: albumData.description,
     onChange: handleChange,
+    error: errors.description,
   },
   {
     label: "Album Cover",
@@ -63,5 +74,6 @@ export const getInputFields = (albumData, handleChange, handleFileChange) => [
     type: "file",
     value: albumData.album_cover,
     onChange: handleFileChange,
+    error: errors.album_cover,
   },
 ];
