@@ -57,7 +57,10 @@ function Login() {
               Remember me
             </label>
           </div>
-          <button className="btn btn-warning bg-orange-700 text-white font-black w-100 py-2" type="submit">
+          <button
+            className="btn btn-warning bg-orange-700 text-white font-black w-100 py-2"
+            type="submit"
+          >
             Sign in
           </button>
           <p className="mt-5 mb-3 text-body-secondary">© 2017–2024</p>

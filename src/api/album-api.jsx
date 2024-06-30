@@ -11,7 +11,7 @@ import {
 import { toast } from "react-toastify";
 import extractErrorMessage from "../utils/ErrorsMessage";
 
-const apiUrl = "http://localhost:8000/api";
+const apiUrl = "https://albums-api-spej.onrender.com/api";
 
 export const useAlbums = (token) => {
   const dispatch = useDispatch();

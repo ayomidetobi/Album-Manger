@@ -20,8 +20,8 @@ import About from "./pages/about.jsx";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      cacheTime: 1000 * 10, // 2 hours
-      staleTime: 1000 * 10 * 60,
+      cacheTime: 1000 * 10 * 60, // 2 hours
+      staleTime: 1000 * 10,
     },
   },
 });
