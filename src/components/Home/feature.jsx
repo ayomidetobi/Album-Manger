@@ -7,7 +7,7 @@ import com from "../../assets/image/complex.png";
 const Feature = () => {
   return (
     <div>
-      <p className="text-center text-shade text-base text-dark f-w-600 mt-10">
+      <p className="text-center text-shade text-base text-dark f-w-600 ">
         {" "}
         FEATURED IN
       </p>

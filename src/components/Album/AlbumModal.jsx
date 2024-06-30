@@ -11,9 +11,6 @@ const AlbumModal = ({
   isLoading,
 }) => {
   const { handleSubmit, inputFields } = useAlbumForm(albumData, handleSave);
-  // if (!albumData) {
-  //   return <div>loading ..</div>;
-  // }
 
   return (
     <>
@@ -23,8 +20,8 @@ const AlbumModal = ({
         <div className={`modal ${show ? "d-block" : "d-none"}`} tabIndex="-1">
           <div className="modal-dialog">
             <div className="modal-content">
-              <div className="modal-header bg-slate-100">
-                <h5 className="modal-title text-orange-700 font-black">
+              <div className="modal-header bg-orange-700">
+                <h5 className="modal-title text-white font-black">
                   {isEdit ? "Edit Album" : "New Album"}
                 </h5>
                 <button
@@ -39,7 +36,10 @@ const AlbumModal = ({
                     <InputField key={index} {...field} />
                   ))}
 
-                  <button type="submit" className="btn btn-dark ">
+                  <button
+                    type="submit"
+                    className="btn bg-orange-700 text-white btn-warning "
+                  >
                     {isEdit ? "Save Changes" : "Create Album"}
                   </button>
                 </form>

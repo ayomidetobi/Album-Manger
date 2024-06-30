@@ -11,7 +11,7 @@ import {
 import { toast } from "react-toastify";
 import extractErrorMessage from "../utils/ErrorsMessage";
 
-const apiUrl = "https://albums-api-spej.onrender.com/api";
+const apiUrl = "http://localhost:8000/api";
 
 export const useAlbums = (token) => {
   const dispatch = useDispatch();
@@ -25,13 +25,11 @@ export const useAlbums = (token) => {
     "albums",
     async () => {
       const response = await axios.get(`${apiUrl}/albums/`);
-      console.log(response.data)
+
       return response.data;
-      
     },
     {
       onSuccess: (data) => dispatch(setAlbums(data)),
-      
     },
   );
 

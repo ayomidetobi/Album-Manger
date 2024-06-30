@@ -11,7 +11,7 @@ const searchAlbums = async (query) => {
     return response.data;
   } catch (error) {
     console.error("Error searching albums:", error);
-    return []; // Return empty array if there's an error
+    return [];
   }
 };
 
@@ -46,23 +46,22 @@ const AlbumSearchSortLogic = () => {
     albums: initialAlbums,
     isLoading: isInitialLoading,
     isError,
-  } = useAlbums(); // Fetch albums using useAlbums hook
+  } = useAlbums();
   const [query, setQuery] = useState("");
-  const [albums, setAlbums] = useState(initialAlbums); // Initialize albums with fetched albums
+  const [albums, setAlbums] = useState(initialAlbums);
   const [sortedField, setSortedField] = useState(null);
   const [sortOrder, setSortOrder] = useState("asc");
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setAlbums(initialAlbums); // Update albums when initialAlbums change
+    setAlbums(initialAlbums);
   }, [initialAlbums]);
 
-  const handleSearchDebounced = useDebounce(handleSearch, 5000);
-
   async function handleSearch(query) {
+    const handleSearchDebounced = useDebounce(query, 5000);
     setQuery(query);
     if (query.trim() === "") {
-      setAlbums(initialAlbums); // Reset albums to initial state if query is empty
+      setAlbums(initialAlbums);
       setIsLoading(false);
       return;
     }
@@ -86,7 +85,7 @@ const AlbumSearchSortLogic = () => {
       query,
       sortedField,
       sortOrder,
-      handleSearch: handleSearchDebounced,
+      handleSearch,
       handleSort,
     };
   }
@@ -99,7 +98,7 @@ const AlbumSearchSortLogic = () => {
       query,
       sortedField,
       sortOrder,
-      handleSearch: handleSearchDebounced,
+      handleSearch,
       handleSort,
     };
   }
@@ -110,7 +109,7 @@ const AlbumSearchSortLogic = () => {
     query,
     sortedField,
     sortOrder,
-    handleSearch: handleSearchDebounced,
+    handleSearch,
     handleSort,
     setSortedField,
     setSortOrder,

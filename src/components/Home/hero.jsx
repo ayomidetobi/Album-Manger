@@ -9,7 +9,7 @@ const Hero = () => {
             Where your <br />
             music start
           </p>
-          <p className="text-grey font-thin">
+          <p className="text-grey font-thin pt-3">
             Industry-leading software for managing your music albums. <br />
             Endless inspiration. Start organizing and managing your albums with
             AlbumManager.
