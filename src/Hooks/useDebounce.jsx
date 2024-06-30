@@ -1,19 +1,23 @@
 import { useState, useEffect } from "react";
 
-// Custom debounce hook
-export const useDebounce = (value, delay) => {
-  const [debouncedValue, setDebouncedValue] = useState(value);
+const useDebounce = (func, delay) => {
+  const [timer, setTimer] = useState(null);
 
   useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedValue(value);
-    }, delay);
-
-    // Cleanup function to clear timeout
     return () => {
-      clearTimeout(handler);
+      clearTimeout(timer);
     };
-  }, [value, delay]);
+  }, [timer]);
 
-  return debouncedValue;
+  const debouncedFunction = (...args) => {
+    clearTimeout(timer);
+    const newTimer = setTimeout(() => {
+      func(...args);
+    }, delay);
+    setTimer(newTimer);
+  };
+
+  return debouncedFunction;
 };
+
+export default useDebounce;
