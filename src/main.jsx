@@ -33,7 +33,7 @@ const sessionStoragePersistor = createWebStoragePersistor({
 persistQueryClient({
   queryClient,
   persistor: sessionStoragePersistor,
-  maxAge: 0, // 2 hours
+  maxAge: 1000 * 10 * 60,
 });
 
 ReactDOM.createRoot(document.getElementById("root")).render(
